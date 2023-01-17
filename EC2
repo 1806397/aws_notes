@@ -1,0 +1,44 @@
+EC2 instance (Virtual server)
+
+->popular
+->elastic
+
+EC2 config
+OS
+CPU
+RAM
+
+
+EC2 User Data -used to automate boot task such as:
+1. Installing updates
+2. Installing software
+3. Download common files from the internet
+4. Anything you can think of
+The script only run once
+The EC2 User Data Script runs with the root user
+
+
+Create EC2 instances
+1. Click on instances
+2. Launch instances
+3. Add name and tag
+4. Add base image (Amazon Linux AWS)
+5. Create a key pair 
+6. Key pair type -RSA
+7. Key pair format .pem (Windows 10)
+8. Network setting -> default
+9. Check Allow HTTP traffic
+10. In user data info
+
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# install httpd (Linux 2 version)
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello World from $(hostname -f)</h1>"> /var/www/html/index.html
+
+11. Go to http://(public IP)
+=> Every time when you stop/start you server a new public IP is created (private remains same)
+
